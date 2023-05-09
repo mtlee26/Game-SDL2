@@ -1,0 +1,109 @@
+# depslib dependency file v1.0
+1683433059 source:c:\game\aircraft\baseobject.cpp
+	"BaseObject.h"
+
+1683431284 c:\game\aircraft\baseobject.h
+	"Common.h"
+
+1683621926 c:\game\aircraft\common.h
+	<iostream>
+	<fstream>
+	<vector>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+
+1683624902 source:c:\game\aircraft\common.cpp
+	"Common.h"
+
+1683380810 source:c:\game\aircraft\bullet.cpp
+	"Bullet.h"
+
+1683370480 c:\game\aircraft\bullet.h
+	"BaseObject.h"
+	"Common.h"
+
+1683433244 source:c:\game\aircraft\heart.cpp
+	"Heart.h"
+
+1683370590 c:\game\aircraft\heart.h
+	"Common.h"
+	"BaseObject.h"
+
+1683370717 source:c:\game\aircraft\button.cpp
+	"Button.h"
+
+1683444538 c:\game\aircraft\button.h
+	"Common.h"
+	"BaseObject.h"
+
+1683431556 source:c:\game\aircraft\support.cpp
+	"Support.h"
+
+1683370661 c:\game\aircraft\support.h
+	"Common.h"
+	"BaseObject.h"
+
+1683568507 source:c:\game\aircraft\enemy.cpp
+	"Enemy.h"
+
+1683568507 c:\game\aircraft\enemy.h
+	"Common.h"
+	"BaseObject.h"
+	"Bullet.h"
+
+1683622057 source:c:\game\aircraft\game_utils.cpp
+	"Game_Utils.h"
+
+1683621565 c:\game\aircraft\game_utils.h
+	"Common.h"
+	"Button.h"
+	"BaseObject.h"
+	"MainObject.h"
+	"Enemy.h"
+	"Bullet.h"
+	"Text.h"
+
+1683623141 c:\game\aircraft\mainobject.h
+	<vector>
+	<algorithm>
+	"Common.h"
+	"BaseObject.h"
+	"Enemy.h"
+	"Heart.h"
+	"Bullet.h"
+	"Support.h"
+	"Boss.h"
+
+1683623141 source:c:\game\aircraft\main.cpp
+	"Common.h"
+	"Game_Utils.h"
+	"Button.h"
+	"BaseObject.h"
+	"MainObject.h"
+	"Enemy.h"
+	"Bullet.h"
+	"Heart.h"
+	"Text.h"
+	"Boss.h"
+	<ctime>
+
+1683624310 source:c:\game\aircraft\mainobject.cpp
+	"MainObject.h"
+
+1683613246 source:c:\game\aircraft\text.cpp
+	"Text.h"
+
+1683613198 c:\game\aircraft\text.h
+	"BaseObject.h"
+	"Common.h"
+
+1683565532 source:c:\game\aircraft\boss.cpp
+	"Boss.h"
+
+1683465315 c:\game\aircraft\boss.h
+	"Common.h"
+	"BaseObject.h"
+	"Bullet.h"
+
