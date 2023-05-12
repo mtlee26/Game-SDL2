@@ -8,7 +8,7 @@ Enemy::Enemy(int type_)
     x_val = 0;
     y_val = 0;
     xpos = rand() % (SCREEN_WIDTH-100);
-    ypos = 0;
+    ypos = -ENEMY_HEIGHT;
     frame = 0;
 }
 
@@ -77,7 +77,7 @@ void Enemy::InitEnemyBullet(Bullet* e_bullet, SDL_Renderer* screen)
         e_bullet->set_is_move(true);
         e_bullet->setX(xpos + 8);
         e_bullet->setY(ypos + getRect().h);
-        e_bullet->set_y_val(10);
+        e_bullet->set_y_val(15);
         e_bullet_list.push_back(e_bullet);
     }
 }

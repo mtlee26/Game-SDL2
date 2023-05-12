@@ -12,7 +12,6 @@ MainObject::MainObject()
     bullet_type = round_bullet;
     status = CENTER;
     isDead = false;
-    isDelete = false;
     exp_frame = 0;
 }
 
@@ -22,30 +21,21 @@ MainObject::~MainObject()
 void MainObject::Show(SDL_Renderer* screen)
 {
     Free();
-//    if(isDead){
-//        loadIMG("IMG/exp11.png",screen);
-//        SDL_Rect tmp = {exp_frame * (GetRect().w / 10), 0, GetRect().w / 10, GetRect().h};
-//        Render(screen, xpos-5, ypos - 10, &tmp);
-//        exp_frame++;
-//        if(exp_frame > 10) isDelete = true;
-//    }
-    //else{
-        if(status == CENTER)
-            loadIMG("IMG/player.png", screen);
-        else if(status == LEFT)
-            loadIMG("IMG/player_left.png", screen);
-        else
-            loadIMG("IMG/player_right.png", screen);
+    if(status == CENTER)
+        loadIMG("IMG/player.png", screen);
+    else if(status == LEFT)
+        loadIMG("IMG/player_left.png", screen);
+    else
+        loadIMG("IMG/player_right.png", screen);
 
-        rect_.x = xpos;
-        rect_.y = ypos;
+    rect_.x = xpos;
+    rect_.y = ypos;
 
-        SDL_Rect clip = {frame * (GetRect().w / MAIN_FRAME), 0, GetRect().w/MAIN_FRAME, GetRect().h};
-        SDL_Rect destR = {rect_.x, rect_.y, rect_.w/MAIN_FRAME, rect_.h};
-        SDL_RenderCopy(screen, object, &clip, &destR);
-        frame++;
-        if(frame >= MAIN_FRAME) frame = 0;
-    //}
+    SDL_Rect clip = {frame * (GetRect().w / MAIN_FRAME), 0, GetRect().w/MAIN_FRAME, GetRect().h};
+    SDL_Rect destR = {xpos, ypos, rect_.w/MAIN_FRAME, rect_.h};
+    SDL_RenderCopy(screen, object, &clip, &destR);
+    frame++;
+    if(frame >= MAIN_FRAME) frame = 0;
 }
 
 SDL_Rect MainObject::getRect()
@@ -92,26 +82,30 @@ void MainObject::HandleInput(SDL_Event events, SDL_Renderer* screen, Mix_Chunk* 
             Bullet* p_bullet = new Bullet();
             if(bullet_type == round_bullet)
                 p_bullet->loadIMG("IMG/Main_Bullet.png", screen);
-            else if(bullet_type == laze_bullet)
-                p_bullet->loadIMG("IMG/laze_bullet.png", screen);
+            else if(bullet_type == laze_bullet){
+                if(status == CENTER) p_bullet->loadIMG("IMG/x2bullet.png", screen);
+                else if(status == LEFT) p_bullet->loadIMG("IMG/x2bullet_left.png", screen);
+                else p_bullet->loadIMG("IMG/x2bullet_right.png", screen);
+            }
+
             if(playMusic) Mix_PlayChannel(-1, g_gun, 0);
             if(status == CENTER){
-                p_bullet->setX (this->rect_.x + rect_.w/(2*MAIN_FRAME));
+                p_bullet->setX (this->rect_.x + rect_.w/(2*MAIN_FRAME) - 7);
                 p_bullet->setY (this->rect_.y);
                 p_bullet->set_x_val(0);
 ;               p_bullet->set_y_val(-MAIN_BULLET_SPEED);
 
             }
             else if(status == LEFT){
-                p_bullet->setX (this->rect_.x);
+                p_bullet->setX (this->rect_.x+10);
                 p_bullet->setY (this->rect_.y);
-                p_bullet->set_x_val(-10);
+                p_bullet->set_x_val(-12);
                 p_bullet->set_y_val(-MAIN_BULLET_SPEED);
             }
             else{
-                p_bullet->setX (this->rect_.x + rect_.w/MAIN_FRAME);
+                p_bullet->setX (this->rect_.x + rect_.w/MAIN_FRAME-30);
                 p_bullet->setY (this->rect_.y);
-                p_bullet->set_x_val(10);
+                p_bullet->set_x_val(12);
                 p_bullet->set_y_val(-MAIN_BULLET_SPEED);
             }
             p_bullet->set_is_move(true);
@@ -185,9 +179,6 @@ void MainObject::ChecktoEnemy(vector<Enemy*>& enemy, Heart& heart, Mix_Chunk* so
                 enemy.erase(enemy.begin()+i);
                 threat->Free();
                 heart.Decrease();
-                cout << "enemy" << endl;
-                cout << tRect.x << ' ' << tRect.y << ' ' << tRect.w  << ' ' << tRect.h << endl;
-                cout << pRect.x << ' ' << pRect.y << ' ' << pRect.w  << ' ' << pRect.h << endl;
                 if(heart.getHeart() == 0){
                     isDead = true;
                     break;
@@ -208,7 +199,6 @@ void MainObject::ChecktoEnemy(vector<Enemy*>& enemy, Heart& heart, Mix_Chunk* so
                 }
                 threat->ResetBullet(eb);
                 heart.Decrease();
-                cout << "bullet" << endl;
                 if(heart.getHeart() == 0){
                     isDead = true;
                     break;
@@ -232,10 +222,7 @@ void MainObject::ChecktoBoss(vector<Boss*>& boss, Heart& heart, Mix_Chunk* sound
             if(check_1)
             {
                 if(playMusic)  Mix_PlayChannel(-1, sound, 0);
-                boss.erase(boss.begin()+i);
-                boss_->Free();
                 heart.Decrease();
-                cout << 1 << endl;
                 if(heart.getHeart() == 0){
                     isDead = true;
                     break;
@@ -290,7 +277,7 @@ void MainObject::CheckSupport(vector<Support*> sp, Heart& heart,
         SDL_Rect sRect = sp[i]->getRect();
         if(sp[i]->get_type() == bullet_change)
         {
-            if(CheckCollision(pRect, sRect))
+            if(CheckCollision(sRect, pRect))
             {
                 if(play_music)
                     Mix_PlayChannel(-1, sound, 0);
@@ -301,7 +288,7 @@ void MainObject::CheckSupport(vector<Support*> sp, Heart& heart,
         }
         else if(sp[i]->get_type() == heart_plus)
         {
-            if(CheckCollision(pRect, sRect))
+            if(CheckCollision(sRect, pRect))
             {
                 if(play_music)
                     Mix_PlayChannel(-1, sound, 0);

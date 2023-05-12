@@ -29,7 +29,6 @@ public:
     void HandleInput(SDL_Event events, SDL_Renderer* screen, Mix_Chunk* g_gun, bool& playMusic);
     SDL_Rect getRect();
 
-    //void DoPlayer();
     void Check();
     void ChecktoEnemy(vector<Enemy*>& enemy, Heart& heart, Mix_Chunk* sound, bool& playMusic);
     void ChecktoBoss(vector<Boss*>& boss, Heart& heart, Mix_Chunk* sound, bool& playMusic);
@@ -46,9 +45,6 @@ public:
     int get_bullet_type() {return bullet_type;};
     void HandleBullet(SDL_Renderer* des);
     void RemoveBullet(const int idx);
-    void set_dead(bool e) {isDead = e;};
-    //bool is_dead(){return isDead;};
-    bool is_delete() {return isDelete;};
 private:
     std::vector<Bullet*> p_bullet_list;
     int bullet_type;
@@ -63,11 +59,8 @@ private:
     SDL_Rect main_frame[MAIN_FRAME];
     int frame;
     int exp_frame;
-    //Input input_type;
     int status;
     bool isDead;
-    bool isDelete;
-
 };
 
 #endif // MAIN_OBJECT_H

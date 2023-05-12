@@ -10,7 +10,7 @@ bool CommonFunc::CheckCollision(const SDL_Rect& object1, SDL_Rect& object2)
     int left_2 = object2.x;
     int right_2 = object2.x + object2.w;
     int top_2 = object2.y;
-    int bottom_2 = object2.y+object2.h;
+    int bottom_2 = object2.y + object2.h;
 
     if(left_1 >= left_2 && left_1 <= right_2)
     {
@@ -21,7 +21,6 @@ bool CommonFunc::CheckCollision(const SDL_Rect& object1, SDL_Rect& object2)
         if(top_1 <= top_2 && bottom_2 <= bottom_1)
             return true;
     }
-    if(left_1)
     if(right_1 >= left_2 && right_1 <= right_2)
     {
         if(top_1 >= top_2 && top_1 <= bottom_2)

@@ -45,20 +45,12 @@ const int COLOR_KEY_R = 255;
 const int COLOR_KEY_G = 255;
 const int COLOR_KEY_B = 255;
 
+const int ENEMY_HEIGHT = 85;
 const float ENEMY_SPEED = 5;
 const int ENEMY_FRAME = 8;
 const int BOSS_FRAME = 8;
 
 const int FRAME_PER_SECOND = 40;//fps
-
-const double LAYER_1_SPEED = 0.0;
-const double LAYER_2_SPEED = 0.75;
-const double LAYER_3_SPEED = 1.25;
-const double LAYER_4_SPEED = 1.5;
-const double LAYER_5_SPEED = 1.75;
-const double LAYER_6_SPEED = 2;
-
-const int BACKGROUND_LAYER = 6;
 
 #define WIDTH_MAIN_OBJECT 100//50
 #define HEIGHT_MAIN_OBJECT 85//74
@@ -70,7 +62,7 @@ const int BACKGROUND_LAYER = 6;
 #define SUPPORT_FALL 6
 
 #define SUPPORT_WIDTH 25
-#define SUPPORT_HEIGHT 22
+#define SUPPORT_HEIGHT 25
 
 #define right_dir 0
 #define left_dir 1

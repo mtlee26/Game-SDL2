@@ -11,14 +11,7 @@ Support::Support(int type_)
 
 Support::~Support()
 {
-//    xpos = 0;
-//    ypos = 0;
-//    type = -1;
-//    if(sp_object != nullptr)
-//    {
-//        SDL_DestroyTexture(sp_object);
-//        sp_object = nullptr;
-//    }
+
 }
 
 void Support::Free()
@@ -69,11 +62,11 @@ void Support::Show(SDL_Renderer* screen)
 {
     if(type == bullet_change)
     {
-        loadImg("IMG/bullet_change.png", screen);
+        loadImg("IMG/x2.png", screen);
     }
     else if(type == heart_plus)
     {
-        loadImg("IMG/heart.png", screen);
+        loadImg("IMG/heart1.png", screen);
     }
     SDL_Rect dRect = {xpos, ypos, SUPPORT_WIDTH, SUPPORT_HEIGHT};
     SDL_RenderCopy(screen, sp_object, NULL, &dRect);

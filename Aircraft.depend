@@ -5,7 +5,7 @@
 1683431284 c:\game\aircraft\baseobject.h
 	"Common.h"
 
-1683621926 c:\game\aircraft\common.h
+1683765461 c:\game\aircraft\common.h
 	<iostream>
 	<fstream>
 	<vector>
@@ -14,7 +14,7 @@
 	<SDL_mixer.h>
 	<SDL_ttf.h>
 
-1683624902 source:c:\game\aircraft\common.cpp
+1683689216 source:c:\game\aircraft\common.cpp
 	"Common.h"
 
 1683380810 source:c:\game\aircraft\bullet.cpp
@@ -38,22 +38,22 @@
 	"Common.h"
 	"BaseObject.h"
 
-1683431556 source:c:\game\aircraft\support.cpp
+1683693263 source:c:\game\aircraft\support.cpp
 	"Support.h"
 
 1683370661 c:\game\aircraft\support.h
 	"Common.h"
 	"BaseObject.h"
 
-1683568507 source:c:\game\aircraft\enemy.cpp
+1683693870 source:c:\game\aircraft\enemy.cpp
 	"Enemy.h"
 
-1683568507 c:\game\aircraft\enemy.h
+1683689382 c:\game\aircraft\enemy.h
 	"Common.h"
 	"BaseObject.h"
 	"Bullet.h"
 
-1683622057 source:c:\game\aircraft\game_utils.cpp
+1683689382 source:c:\game\aircraft\game_utils.cpp
 	"Game_Utils.h"
 
 1683621565 c:\game\aircraft\game_utils.h
@@ -65,7 +65,7 @@
 	"Bullet.h"
 	"Text.h"
 
-1683623141 c:\game\aircraft\mainobject.h
+1683767898 c:\game\aircraft\mainobject.h
 	<vector>
 	<algorithm>
 	"Common.h"
@@ -76,7 +76,7 @@
 	"Support.h"
 	"Boss.h"
 
-1683623141 source:c:\game\aircraft\main.cpp
+1683765461 source:c:\game\aircraft\main.cpp
 	"Common.h"
 	"Game_Utils.h"
 	"Button.h"
@@ -87,9 +87,10 @@
 	"Heart.h"
 	"Text.h"
 	"Boss.h"
+	"Support.h"
 	<ctime>
 
-1683624310 source:c:\game\aircraft\mainobject.cpp
+1683767909 source:c:\game\aircraft\mainobject.cpp
 	"MainObject.h"
 
 1683613246 source:c:\game\aircraft\text.cpp
@@ -99,11 +100,13 @@
 	"BaseObject.h"
 	"Common.h"
 
-1683565532 source:c:\game\aircraft\boss.cpp
+1683764530 source:c:\game\aircraft\boss.cpp
 	"Boss.h"
 
 1683465315 c:\game\aircraft\boss.h
 	"Common.h"
 	"BaseObject.h"
 	"Bullet.h"
+
+1683632672 source:c:\game\aircraft\gameutils.cpp
 

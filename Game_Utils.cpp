@@ -13,7 +13,7 @@ void RenderBackground(double& offsetSpeed, BaseObject& Background, SDL_Renderer*
 
 void CreateEnemy(vector<Enemy*>& enemy, SDL_Renderer* screen)
 {
-    int random = rand() % 40;
+    int random = rand() % 30;
     if(random == 1){
         Enemy* enemy_ = new Enemy(rand()%2);
         Bullet* e_bullet = new Bullet();
@@ -54,7 +54,7 @@ void CheckEnemy(SDL_Renderer* screen, MainObject& player, vector<Enemy*>& enemy,
                         if(enemy_->is_dead()){
                             if(enemy_->get_type() == RED_ENEMY) player_score += 10;
                             else if(enemy_->get_type() == GREEN_ENEMY) player_score += 20;
-                            enemy.erase(enemy.begin()+e);
+                            enemy.erase(enemy.begin() + e);
                             enemy_->Free();
                         }
                     }
@@ -96,11 +96,6 @@ void CheckBoss(SDL_Renderer* screen, MainObject& player, vector<Boss*>& boss, Mi
                         if(boss_->is_dead()){
                             player_score += 50;
                             boss_->set_isDead(true);
-                            //if(boss_->is_delete()) {
-                                cout << "yes" << endl;
-                            boss.erase(boss.begin()+e);
-                            boss_->Free();
-                           // }
                         }
                     }
                 }
@@ -308,10 +303,10 @@ void Game::handleExit(SDL_Event e, Mix_Chunk* click)
             break;
         case SDL_MOUSEBUTTONDOWN:
             Mix_PlayChannel(-1, click, 0);
-            SDL_Delay(100);
+            Exit.set_color(Text::RED_TEXT);
+            //SDL_Delay(100);
             is_quit = true;
             is_play = false;
-            Exit.set_color(Text::RED_TEXT);
             break;
         }
     }

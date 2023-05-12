@@ -9,6 +9,7 @@ Boss::Boss()
     xpos = rand() % (SCREEN_WIDTH-100);
     ypos = 0;
     isDead = false;
+    isDelete = false;
     f = 0;
     frame = 0;
 }
@@ -26,9 +27,10 @@ void Boss::HandleMove()
     else if(direction == right_dir){
         x_val = ENEMY_SPEED;
     }
-    int rd = rand() % 2 + 2;
-    if(rd == up_dir) y_val = -ENEMY_SPEED;
-    else y_val = ENEMY_SPEED;
+//    int rd = rand() % 2 + 2;
+//    if(rd == up_dir) y_val = -ENEMY_SPEED;
+//    else y_val = ENEMY_SPEED;
+    y_val = rand() % 15 - 7;
 
     xpos += x_val;
     ypos += y_val;
@@ -60,7 +62,7 @@ void Boss::Show(SDL_Renderer* des)
         SDL_Rect tmp = {f * (GetRect().w / 10), 0, GetRect().w / 10, GetRect().h};
         Render(des, xpos, ypos - 10, &tmp);
         f++;
-        if(f >= 10) Free();
+        if(f >= 10) isDelete = true;
     }
     else {
         loadIMG("IMG/health.png", des);

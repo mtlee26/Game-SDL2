@@ -39,7 +39,6 @@ private:
     float x_val;
     float y_val;
     int frame;
-    //SDL_Texture* enemy;
     vector<Bullet*> e_bullet_list;
 };
 

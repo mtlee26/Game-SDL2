@@ -8,6 +8,7 @@
 #include "Heart.h"
 #include "Text.h"
 #include "Boss.h"
+#include "Support.h"
 
 #include <ctime>
 
@@ -34,7 +35,6 @@ int main (int argc, char* argv[])
 
     while(!game.is_quit_menu)
     {
-        //Mix_PlayMusic(g_music, 1);
         while(SDL_PollEvent(&event) != 0)
         {
             if(event.type == SDL_QUIT)
@@ -55,7 +55,6 @@ int main (int argc, char* argv[])
 
         MainObject player;
         player.loadIMG("player.png", g_screen);
-        //player.set_clip();
 
         Heart heart;
         heart.Init(g_screen);
@@ -85,8 +84,6 @@ int main (int argc, char* argv[])
 
         vector<Enemy*> enemy;
         vector<Boss*> boss;
-        //vector<Enemy*> enemy2;
-        int TIME1 = 4000;
 
         Uint32 start_time = SDL_GetTicks();
 
@@ -101,32 +98,31 @@ int main (int argc, char* argv[])
                     break;
                 }
                 game.handlePause(event);
-                //game.handlePlayMusic(event);
                 player.HandleInput(event, g_screen, g_gun, game.play_music);
             }
             game.RenderPause(g_screen);
+
             if(!game.is_paused){
 
             SDL_RenderClear(g_screen);
 
             RenderBackground(offsetSpeed, g_background, g_screen);
 
-            //enemy
             Uint32 time = SDL_GetTicks();
 
-            if(boss.size() == 0 && enemy.size() <= 20) CreateEnemy(enemy, g_screen);
+            if(enemy.size() <= 20) CreateEnemy(enemy, g_screen);
 
-            int rd = rand() % 1500;
-            if(rd == 1 ){
+            int rd = rand() % 1200;
+            if(rd == 1 && boss.size() < 2 && player_score >= 200){
                 Boss* new_boss = new Boss();
                 Bullet* b_bullet = new Bullet();
                 new_boss->InitBossBullet(b_bullet, g_screen);
                 boss.push_back(new_boss);
             }
 
-            if(time - start_time >= 15000)
+            if(time - start_time >= 30000)
             {
-                Support* sp_object = new Support(rand() % 3);
+                Support* sp_object = new Support(rand() % 2);
                 sp_list.push_back(sp_object);
                 start_time = time;
             }
@@ -173,6 +169,10 @@ int main (int argc, char* argv[])
                     boss[i]->HandleMove();
                     boss[i]->MakeBullet(g_screen);
                     boss[i]->Show(g_screen);
+                }
+                if(boss[i]->is_delete()){
+                    boss.erase(boss.begin() + i);
+                    boss[i]->Free();
                 }
             }
 
@@ -298,10 +298,6 @@ bool loadMedia()
 
 void Close()
 {
-//    for(int i = 0; i < BACKGROUND_LAYER; i++)
-//    {
-//        gBackground[i].Free();
-//    }
     g_background.Free();
     SDL_DestroyRenderer(g_screen);
 	SDL_DestroyWindow(window);
